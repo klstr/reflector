@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: reflector
+spec:
+  selector:
+    name: reflector
+  ports:
+  - name: 
+    port: 3000
+    targetPort: 3000

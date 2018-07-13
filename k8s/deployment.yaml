@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  reflector
+  labels:
+    name:  reflector
+spec:
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        name:  reflector
+    spec:
+      containers:
+      - image:  quay.io/klstr/reflector:latest
+        name: reflector
+        env:
+        - name:  NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name:  POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name:  POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name:  POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        ports:
+        - containerPort:  3000
+      restartPolicy: Always
+      imagePullPolicy: Always
