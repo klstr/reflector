@@ -6,6 +6,9 @@ metadata:
     name:  reflector
 spec:
   replicas: 5
+  selector:
+    matchLabels:
+      name: reflector
   template:
     metadata:
       labels:
@@ -33,5 +36,4 @@ spec:
               fieldPath: metadata.namespace
         ports:
         - containerPort:  3000
-      restartPolicy: Always
-      imagePullPolicy: Always
+        imagePullPolicy: Always
