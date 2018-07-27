@@ -2,10 +2,12 @@ kind: Service
 apiVersion: v1
 metadata:
   name: reflector
+  labels:
+    app: reflector
 spec:
   selector:
     name: reflector
   ports:
-  - name: web
+  - name: reflector
     port: 3000
     targetPort: 3000

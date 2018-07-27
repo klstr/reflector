@@ -15,7 +15,7 @@ spec:
         name:  reflector
     spec:
       containers:
-      - image:  quay.io/klstr/reflector:latest
+      - image:  quay.io/dhruvasagar/reflector:latest
         name: reflector
         env:
         - name:  NODE_NAME
