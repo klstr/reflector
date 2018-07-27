@@ -31,7 +31,7 @@ func reflect(rw http.ResponseWriter, req *http.Request) {
 
 func main() {
 	router := mux.NewRouter()
-	http.Handle("/metrics", promhttp.Handler())
+	router.Handle("/metrics", promhttp.Handler())
 	router.HandleFunc("/", reflect)
 	http.ListenAndServe(":3000", router)
 }
