@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/gorilla/mux"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 // PodEnv sets up the pod environment
@@ -30,6 +31,7 @@ func reflect(rw http.ResponseWriter, req *http.Request) {
 
 func main() {
 	router := mux.NewRouter()
+	http.Handle("/metrics", promhttp.Handler())
 	router.HandleFunc("/", reflect)
 	http.ListenAndServe(":3000", router)
 }
