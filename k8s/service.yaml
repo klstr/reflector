@@ -6,6 +6,6 @@ spec:
   selector:
     name: reflector
   ports:
-  - name: 
+  - name: web
     port: 3000
     targetPort: 3000
