@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
@@ -33,5 +34,6 @@ func main() {
 	router := mux.NewRouter()
 	router.Handle("/metrics", promhttp.Handler())
 	router.HandleFunc("/", reflect)
-	http.ListenAndServe(":3000", router)
+	loggedRouter := handlers.LoggingHandler(os.Stdout, router)
+	http.ListenAndServe(":3000", loggedRouter)
 }
